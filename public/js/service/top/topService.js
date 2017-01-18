@@ -7,7 +7,7 @@ step.ProjectManagement.Service = step.ProjectManagement.Service || {};
 step.ProjectManagement.Service.Top = step.ProjectManagement.Service.Top || {};
 
 /**
- * Top描画用サービスクラス
+ * Top画面用サービスクラス
  */
 step.ProjectManagement.Service.Top.TopService = function() {};
 

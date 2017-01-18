@@ -16,5 +16,9 @@ step.ProjectManagement.Module.Top.app.controller('topController', function($scop
 
   topService.initialize();
 
+  $scope.clickToTaskManager = function(event){
+    window.location.href = 'taskManager.html';
+  }
+
   console.log('controller running');
 });
