@@ -6,55 +6,72 @@ var pg = require('pg');
 
 var app = express();
 
+var con = "tcp://postgres:postgres@127.0.0.1:5432/project_manage_db";
+
+
 //-------------------------------------------------------------------------
 // GET http://localhost:8080/getMembers
 app.get('/getMembers', (req, res) => {
-  var con = "tcp://postgres:postgres@127.0.0.1:5432/project_manage_db";
-
-  // postgreSQLと接続
+  console.log('/gemMembers start');
   pg.connect(con, (err, client) => {
     // dbコネクションでエラーが発生した場合
     if (err) {
       console.log('connection.error');
-      res.status(500).send('DB connection error');
-      res.end();
-    }
-
-    // dbコネクションの接続が成功した場合
-    else {
-      var query = client.query('select * from members;');
+      res.status(500).send('DB connection error').end();
+    } else {
       var rows = [];
-
+      var query = client.query('select * from members;');
       // クエリ結果が返却されるたびに実行
-      query.on('row', function(row) {
-        rows.push(row);
-      });
-
+      query.on('row', (row) => {rows.push(row)});
       // クエリーが完了
-      query.on('end', function(row,err) {
-        console.log('query end');
-        for (var i = 0; i < rows.length; i ++) {
-          console.log(rows[i].id);
-        }
-
-        res.contentType('application/json');
-        res.send(JSON.stringify(rows));
-        res.end();
-      });
-
+      query.on('end', (row,err) => {res.contentType('application/json').send(JSON.stringify(rows)).end();});
       // クエリでエラーが発生した場合
-      query.on('error', function(error) {
-          console.log("ERROR!!" + error);
-          res.status(500).send('getMembers error');
-          res.end();
-      });
+      query.on('error', (error) => {res.status(500).send('fail to getMembers').end();});
     }
   });
 });
 //-------------------------------------------------------------------------
-
-
+// GET http://localhost:8080/getProjects
+app.get('/getProjects', (req, res) => {
+  console.log('/getProjects start');
+  pg.connect(con, (err, client) => {
+    // dbコネクションでエラーが発生した場合
+    if (err) {
+      console.log('connection.error');
+      res.status(500).send('DB connection error').end();
+    } else {
+      var rows = [];
+      var query = client.query('select * from projects;');
+      // クエリ結果が返却されるたびに実行
+      query.on('row', (row) => {rows.push(row)});
+      // クエリーが完了
+      query.on('end', (row,err) => {res.contentType('application/json').send(JSON.stringify(rows)).end();});
+      // クエリでエラーが発生した場合
+      query.on('error', (error) => {res.status(500).send('fail to getMembers').end();});
+    }
+  });
+});
 //-------------------------------------------------------------------------
+// POST http://localhost:8080/addProject
+app.post('/addProject', (req, res) => {
+  console.log('/getProjects start');
+  pg.connect(con, (err, client) => {
+    // dbコネクションでエラーが発生した場合
+    if (err) {
+      console.log('connection.error');
+      res.status(500).send('DB connection error').end();
+    } else {
+      var rows = [];
+      var query = client.query('select * from projects;');
+      // クエリ結果が返却されるたびに実行
+      query.on('row', (row) => {rows.push(row)});
+      // クエリーが完了
+      query.on('end', (row,err) => {res.contentType('application/json').send(JSON.stringify(rows)).end();});
+      // クエリでエラーが発生した場合
+      query.on('error', (error) => {res.status(500).send('fail to getMembers').end();});
+    }
+  });
+});
 
 // publicフォルダ配下を公開設定
 app.use(express.static('public'));

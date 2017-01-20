@@ -10,4 +10,4 @@ step.ProjectManagement.Module.Top = step.ProjectManagement.Module.Top || {};
  * Task管理画面画面用Appモジュールを設定
  */
 step.ProjectManagement.Module.Top.app = angular.module('topApp', ['commonApp']);
-step.ProjectManagement.Module.Top.app.service('topService', [step.ProjectManagement.Service.Top.TopService]);
+step.ProjectManagement.Module.Top.app.service('topService', ['projectService', step.ProjectManagement.Service.Top.TopService]);

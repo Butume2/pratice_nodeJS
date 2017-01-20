@@ -9,7 +9,7 @@ step.ProjectManagement.Service.Top = step.ProjectManagement.Service.Top || {};
 /**
  * Top画面用サービスクラス
  */
-step.ProjectManagement.Service.Top.TopService = function() {};
+step.ProjectManagement.Service.Top.TopService = function(projectService) {};
 
 /**
  * 初期化処理

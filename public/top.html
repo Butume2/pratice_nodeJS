@@ -11,6 +11,8 @@
   <script src="./js/angular.min.js"></script>
 
   <!-- サービスクラス読み込み -->
+  <script src="./js/service/common/serverDataAccessService.js"></script>
+  <script src="./js/service/common/projectService.js"></script>
   <script src="./js/service/top/topService.js"></script>
 
   <!-- アプリケーションモジュール読み込み -->
@@ -26,6 +28,12 @@
     <h1>プロジェクト管理ツール(仮)</h1>
   </header>
   <div id="mainContents">
+    <div id="projectListArea">
+      <div id="projectListHeader">
+        <span>プロジェクト一覧</span>
+        <button id="addProjectButton" ng-click="addProjectButtonClick">追加</button>
+      </div>
+    </div>
     <div id="mainMenuArea">
       <ul id="mainMenuList">
         <li class="menuItem clickable" ng-click="clickToTaskManager()">タスク管理画面</li>
@@ -33,5 +41,19 @@
     </div>
   </div>
   <footer></footer>
+  <div id="popupContents">
+    <div id="addProjectPopup" class="popup" ng-class="">
+      <div id="addProjectPopupBackground">
+        <div id="projectNameInputArea">
+          <label>プロジェクト名</label>
+          <input type="text"/>
+        </div>
+        <div id="projectPeriodInputArea">
+          <label>プロジェクト期間</label>
+          <input type="date"/>～<input type="date"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

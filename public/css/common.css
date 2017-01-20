@@ -34,6 +34,12 @@ footer {
   background-color: rgb(159, 228, 222);
 }
 
+#popupContents {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 .clickable {
   cursor: pointer;
 }
